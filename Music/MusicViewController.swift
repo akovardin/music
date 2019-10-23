@@ -9,10 +9,11 @@
 import UIKit
 import Alamofire
 
-class SearchViewController: UITableViewController {
+class MusicViewController: UITableViewController {
+    private var timer: Timer?
+    private let networkService = NetworkService()
     let searchController = UISearchController()
-    let tracks = [TrackModel(trackName: "bad guy", artistName: "Billie Eilish"),
-                  TrackModel(trackName: "bury a friend", artistName: "Billie Eilish")]
+    var tracks = [Track]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,20 +47,15 @@ class SearchViewController: UITableViewController {
     }
 }
 
-extension SearchViewController: UISearchBarDelegate {
+extension MusicViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        let url = "https://itunes.apple.com/search?term=\(searchText)"
-        Alamofire.request(url).responseData {resp in
-            if let error = resp.error {
-                print("error on request data: \(error)")
-                return
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+            self.networkService.fetchTracks(searchText: searchText) { [weak self] (searchResults) in
+                self?.tracks = searchResults?.results ?? []
+                self?.tableView.reloadData()
             }
-            
-            guard let data = resp.data else { return }
-            
-            let str = String(data: data, encoding: .utf8)
-            print(str)
-        }
+        })
     }
 }

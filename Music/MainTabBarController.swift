@@ -15,11 +15,11 @@ class MainTabBarController: UITabBarController {
         view.backgroundColor = .gray
         tabBar.tintColor = #colorLiteral(red: 0.9725490196, green: 0.2509803922, blue: 0.3725490196, alpha: 1)
         
-        let search = generateViewController(root: SearchViewController(), image: #imageLiteral(resourceName: "ios10-apple-music-search-5nav-icon"), title: "Search")
+        let search: SearchViewController = SearchViewController.loadFromStoryboard()
         let library = generateViewController(root: ViewController(), image: #imageLiteral(resourceName: "ios10-apple-music-library-5nav-icon"), title: "Library")
         
         viewControllers = [
-            search,
+            generateViewController(root: search, image: #imageLiteral(resourceName: "ios10-apple-music-search-5nav-icon"), title: "Search"),
             library,
         ]
     }
