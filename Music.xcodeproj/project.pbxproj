@@ -22,6 +22,7 @@
 		AC4F72BE235CF11900CF4B1F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F72BD235CF11900CF4B1F /* MainTabBarController.swift */; };
 		AC4F72C0235CF48400CF4B1F /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F72BF235CF48400CF4B1F /* MusicViewController.swift */; };
 		AC4F72C2235E4F4000CF4B1F /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F72C1235E4F4000CF4B1F /* TrackModel.swift */; };
+		ACC0A853236636E200E59D65 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC0A852236636E200E59D65 /* FooterView.swift */; };
 		ACE31DD32360BE3300B7A85A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE31DD22360BE3300B7A85A /* NetworkService.swift */; };
 		ACE31DDB2360BE8C00B7A85A /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE31DD42360BE8C00B7A85A /* SearchPresenter.swift */; };
 		ACE31DDC2360BE8C00B7A85A /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE31DD52360BE8C00B7A85A /* SearchWorker.swift */; };
@@ -79,6 +80,7 @@
 		AC4F72BD235CF11900CF4B1F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		AC4F72BF235CF48400CF4B1F /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 		AC4F72C1235E4F4000CF4B1F /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
+		ACC0A852236636E200E59D65 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		ACE31DD22360BE3300B7A85A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		ACE31DD42360BE8C00B7A85A /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		ACE31DD52360BE8C00B7A85A /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
@@ -207,17 +209,26 @@
 			path = MusicUITests;
 			sourceTree = "<group>";
 		};
+		ACC0A851236636BF00E59D65 /* FooterView */ = {
+			isa = PBXGroup;
+			children = (
+				ACC0A852236636E200E59D65 /* FooterView.swift */,
+			);
+			path = FooterView;
+			sourceTree = "<group>";
+		};
 		ACE31DC22360BDC600B7A85A /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				ACC0A851236636BF00E59D65 /* FooterView */,
 				ACE31DE92360F4D400B7A85A /* Cell */,
 				ACE31DD42360BE8C00B7A85A /* SearchPresenter.swift */,
+				ACE31DD92360BE8C00B7A85A /* SearchInteractor.swift */,
 				ACE31DD52360BE8C00B7A85A /* SearchWorker.swift */,
 				ACE31DD62360BE8C00B7A85A /* SearchRouter.swift */,
 				ACE31DD72360BE8C00B7A85A /* SearchModels.swift */,
 				ACE31DD82360BE8C00B7A85A /* SearchViewController.swift */,
 				ACE31DE22360BF8A00B7A85A /* SearchViewController.storyboard */,
-				ACE31DD92360BE8C00B7A85A /* SearchInteractor.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -482,6 +493,7 @@
 				AC4F72C0235CF48400CF4B1F /* MusicViewController.swift in Sources */,
 				ACE31DDC2360BE8C00B7A85A /* SearchWorker.swift in Sources */,
 				ACE31DDD2360BE8C00B7A85A /* SearchRouter.swift in Sources */,
+				ACC0A853236636E200E59D65 /* FooterView.swift in Sources */,
 				AC4F728D235CED9700CF4B1F /* ViewController.swift in Sources */,
 				ACE31DDB2360BE8C00B7A85A /* SearchPresenter.swift in Sources */,
 				ACE31DD32360BE3300B7A85A /* NetworkService.swift in Sources */,

@@ -19,6 +19,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     
     private var searchViewModel = SearchViewModel(cells:[])
     private var timer: Timer?
+    private lazy var footerView = FooterView()
     
     @IBOutlet weak var table: UITableView!
     // MARK: Object lifecycle
@@ -63,16 +64,18 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         
         let nib = UINib(nibName: "TrackCell", bundle: nil)
         table.register(nib, forCellReuseIdentifier: TrackCell.reuseIdentifier)
+        table.tableFooterView = footerView
     }
     
     func displayData(viewModel: Search.Model.ViewModel.ViewModelData) {
         switch viewModel {
-        case .some:
-            print("viewController .some")
         case .displayTracks(let searchViewModel):
             print("viewController .displayTracks")
             self.searchViewModel = searchViewModel
             table.reloadData()
+            footerView.hideLoader()
+        case .displayFooterView:
+            footerView.showLoader()
         }
     }
     
@@ -97,7 +100,26 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 84
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Pelase enter search term above..."
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if searchViewModel.cells.count > 0 {
+            return 0
+        }
+        
+        return 250
+    }
 }
+
+// MARK: - UISearchBarDelegate
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

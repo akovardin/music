@@ -7,6 +7,7 @@ target 'Music' do
 
   # Pods for Music
   pod 'Alamofire'
+  pod 'SDWebImage'
 
   target 'MusicTests' do
     inherit! :search_paths
