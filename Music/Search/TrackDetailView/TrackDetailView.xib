@@ -146,7 +146,7 @@
                 <outlet property="authorLabel" destination="R9K-gH-0xO" id="48w-u2-aEo"/>
                 <outlet property="currentTimeLabel" destination="Hdr-tj-Yr9" id="lkU-hB-hVV"/>
                 <outlet property="currentTimeSlider" destination="WPB-35-XeG" id="Vg1-DB-oDn"/>
-                <outlet property="durationLabel" destination="QHM-x3-PL4" id="Fec-DU-na0"/>
+                <outlet property="durationTimeLabel" destination="sBJ-dx-YPS" id="UYF-xQ-Tod"/>
                 <outlet property="playPauseButton" destination="xNL-nB-t3o" id="RdW-SL-rQr"/>
                 <outlet property="trackImageVIew" destination="Ash-sD-Znq" id="Ga9-e8-HXp"/>
                 <outlet property="trackTitleLabel" destination="SK6-4C-aNt" id="IwD-ms-TLY"/>

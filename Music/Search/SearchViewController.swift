@@ -122,8 +122,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = searchViewModel.cells[indexPath.row]
         let window = UIApplication.shared.keyWindow
-        let trackDetailsView = Bundle.main.loadNibNamed("TrackDetailView", owner: self, options: nil)?.first as! TrackDetailView
+        let trackDetailsView: TrackDetailView = TrackDetailView.loadFromNib()
         trackDetailsView.set(model: model)
+        trackDetailsView.movingDelegate = self
         window?.addSubview(trackDetailsView)
     }
 }
@@ -137,5 +138,41 @@ extension SearchViewController: UISearchBarDelegate {
             self.interactor?.makeRequest(request: Search.Model.Request.RequestType.getTracks(searchText: searchText))
         })
         
+    }
+}
+
+// MARK: - TrackMovingDelegate
+
+extension SearchViewController: TrackMovingDelegate {
+    private func getTrack(_ isForvardTrack: Bool) -> SearchViewModel.Cell? {
+        guard let indexPath = table.indexPathForSelectedRow else {return nil}
+        table.deselectRow(at: indexPath, animated: true)
+        var nextIndexPath: IndexPath!
+        if isForvardTrack {
+            nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+            
+            if nextIndexPath.row == searchViewModel.cells.count {
+                nextIndexPath.row = 0
+            }
+        } else {
+            nextIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+            
+            if nextIndexPath.row == -1 {
+                nextIndexPath.row = 0
+            }
+        }
+        
+        table.selectRow(at: nextIndexPath, animated: true, scrollPosition: .none)
+        let model = searchViewModel.cells[nextIndexPath.row]
+        return model
+        
+    }
+    
+    func moveBack() -> SearchViewModel.Cell? {
+        return getTrack(false)
+    }
+    
+    func moveForvard() -> SearchViewModel.Cell? {
+        return getTrack(true)
     }
 }

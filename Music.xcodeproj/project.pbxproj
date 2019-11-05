@@ -10,6 +10,7 @@
 		2D9317805FD4ED4BA1FD2E8D /* Pods_Music.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10F06115A4F99EFA72CC2C3 /* Pods_Music.framework */; };
 		409331225E7C871FEF1E3332 /* Pods_MusicUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90677299D792147995FF13CD /* Pods_MusicUITests.framework */; };
 		4B309972B9E9F7C7D0CBBC84 /* Pods_MusicTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13ED4BF199CC8B5724ACC97E /* Pods_MusicTests.framework */; };
+		AC3BD9E7236B743B002A1FBE /* CMTime + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BD9E6236B743B002A1FBE /* CMTime + Extension.swift */; };
 		AC4F7289235CED9700CF4B1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F7288235CED9700CF4B1F /* AppDelegate.swift */; };
 		AC4F728B235CED9700CF4B1F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F728A235CED9700CF4B1F /* SceneDelegate.swift */; };
 		AC4F728D235CED9700CF4B1F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F728C235CED9700CF4B1F /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 		AC4F72BE235CF11900CF4B1F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F72BD235CF11900CF4B1F /* MainTabBarController.swift */; };
 		AC4F72C0235CF48400CF4B1F /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F72BF235CF48400CF4B1F /* MusicViewController.swift */; };
 		AC4F72C2235E4F4000CF4B1F /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4F72C1235E4F4000CF4B1F /* TrackModel.swift */; };
+		ACA47DA723721CBE00DF7E19 /* Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA47DA623721CBE00DF7E19 /* Nib.swift */; };
 		ACC0A853236636E200E59D65 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC0A852236636E200E59D65 /* FooterView.swift */; };
 		ACC0A85623678B9B00E59D65 /* TrackDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC0A85523678B9B00E59D65 /* TrackDetailView.xib */; };
 		ACC0A85823678BAB00E59D65 /* TrackDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC0A85723678BAB00E59D65 /* TrackDetailView.swift */; };
@@ -64,6 +66,7 @@
 		90677299D792147995FF13CD /* Pods_MusicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A013F5B7CC0A8CD23F60C308 /* Pods-MusicTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTests.debug.xcconfig"; path = "Target Support Files/Pods-MusicTests/Pods-MusicTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A11B82FA74E8667D76DB34DB /* Pods-Music.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music.release.xcconfig"; path = "Target Support Files/Pods-Music/Pods-Music.release.xcconfig"; sourceTree = "<group>"; };
+		AC3BD9E6236B743B002A1FBE /* CMTime + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime + Extension.swift"; sourceTree = "<group>"; };
 		AC4F7285235CED9700CF4B1F /* Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Music.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC4F7288235CED9700CF4B1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC4F728A235CED9700CF4B1F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +85,7 @@
 		AC4F72BD235CF11900CF4B1F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		AC4F72BF235CF48400CF4B1F /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 		AC4F72C1235E4F4000CF4B1F /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
+		ACA47DA623721CBE00DF7E19 /* Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nib.swift; sourceTree = "<group>"; };
 		ACC0A852236636E200E59D65 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		ACC0A85523678B9B00E59D65 /* TrackDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackDetailView.xib; sourceTree = "<group>"; };
 		ACC0A85723678BAB00E59D65 /* TrackDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailView.swift; sourceTree = "<group>"; };
@@ -260,6 +264,8 @@
 			isa = PBXGroup;
 			children = (
 				ACE31DE52360C25D00B7A85A /* UIViewController + Storyboard.swift */,
+				AC3BD9E6236B743B002A1FBE /* CMTime + Extension.swift */,
+				ACA47DA623721CBE00DF7E19 /* Nib.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -511,6 +517,7 @@
 				ACC0A853236636E200E59D65 /* FooterView.swift in Sources */,
 				AC4F728D235CED9700CF4B1F /* ViewController.swift in Sources */,
 				ACC0A85823678BAB00E59D65 /* TrackDetailView.swift in Sources */,
+				AC3BD9E7236B743B002A1FBE /* CMTime + Extension.swift in Sources */,
 				ACE31DDB2360BE8C00B7A85A /* SearchPresenter.swift in Sources */,
 				ACE31DD32360BE3300B7A85A /* NetworkService.swift in Sources */,
 				ACE31DE62360C25D00B7A85A /* UIViewController + Storyboard.swift in Sources */,
@@ -520,6 +527,7 @@
 				ACE31DDF2360BE8C00B7A85A /* SearchViewController.swift in Sources */,
 				AC4F72BE235CF11900CF4B1F /* MainTabBarController.swift in Sources */,
 				ACE31DF02361012F00B7A85A /* SearchResponse.swift in Sources */,
+				ACA47DA723721CBE00DF7E19 /* Nib.swift in Sources */,
 				AC4F728B235CED9700CF4B1F /* SceneDelegate.swift in Sources */,
 				AC4F7293235CED9700CF4B1F /* Music.xcdatamodeld in Sources */,
 				ACE31DDE2360BE8C00B7A85A /* SearchModels.swift in Sources */,

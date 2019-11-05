@@ -9,13 +9,20 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
+    private var minimisedTopAnchorConstraint: NSLayoutConstraint!
+    private var maximizedTopAnchorConstraint: NSLayoutConstraint!
+    private var bottomAnchorConstraint: NSLayoutConstraint!
+    
+    let search: SearchViewController = SearchViewController.loadFromStoryboard()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .gray
         tabBar.tintColor = #colorLiteral(red: 0.9725490196, green: 0.2509803922, blue: 0.3725490196, alpha: 1)
         
-        let search: SearchViewController = SearchViewController.loadFromStoryboard()
+        setupTrackDetailView()
+        
         let library = generateViewController(root: ViewController(), image: #imageLiteral(resourceName: "ios10-apple-music-library-5nav-icon"), title: "Library")
         
         viewControllers = [
@@ -32,5 +39,42 @@ class MainTabBarController: UITabBarController {
         navigation.navigationBar.prefersLargeTitles = true
         
         return navigation
+    }
+    
+    private func setupTrackDetailView() {
+        let trackDetailView: TrackDetailView = TrackDetailView.loadFromNib()
+        trackDetailView.animateDelegate = self
+        trackDetailView.movingDelegate = search
+        view.insertSubview(trackDetailView, belowSubview: tabBar)
+        
+        trackDetailView.translatesAutoresizingMaskIntoConstraints = false
+        
+        maximizedTopAnchorConstraint = trackDetailView.topAnchor.constraint(equalTo: view.topAnchor)
+        minimisedTopAnchorConstraint = trackDetailView.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -64)
+        bottomAnchorConstraint = trackDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height)
+        
+        maximizedTopAnchorConstraint.isActive = true
+        bottomAnchorConstraint.isActive = true
+        
+        trackDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        trackDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    }
+}
+
+// MARK: - TrackAnimateDelegate
+
+extension MainTabBarController: TrackAnimateDelegate {
+    func minimizeTrackDetails() {
+        maximizedTopAnchorConstraint.isActive = false
+        minimisedTopAnchorConstraint.isActive = true
+        
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.7,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut,
+            animations: { self.view.layoutIfNeeded() },
+            completion: nil)
     }
 }
