@@ -20,8 +20,10 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     private var searchViewModel = SearchViewModel(cells:[])
     private var timer: Timer?
     private lazy var footerView = FooterView()
+    var trackDetailAnimateDelegate: TrackAnimateDelegate?
     
     @IBOutlet weak var table: UITableView!
+    
     // MARK: Object lifecycle
     
     // MARK: Setup
@@ -121,11 +123,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = searchViewModel.cells[indexPath.row]
-        let window = UIApplication.shared.keyWindow
-        let trackDetailsView: TrackDetailView = TrackDetailView.loadFromNib()
-        trackDetailsView.set(model: model)
-        trackDetailsView.movingDelegate = self
-        window?.addSubview(trackDetailsView)
+        self.trackDetailAnimateDelegate?.maximizeTrackDetail(model: model)
     }
 }
 

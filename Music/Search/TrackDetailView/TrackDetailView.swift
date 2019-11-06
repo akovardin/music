@@ -16,6 +16,7 @@ protocol TrackMovingDelegate {
 
 protocol TrackAnimateDelegate {
     func minimizeTrackDetails()
+    func maximizeTrackDetail(model: SearchViewModel.Cell?)
 }
 
 class TrackDetailView: UIView {
