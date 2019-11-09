@@ -13,6 +13,69 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="25S-1d-qA1">
+                    <rect key="frame" x="0.0" y="44" width="414" height="64"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUf-Vy-kul">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="7M1-B4-0p0"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="h3a-Be-z9Z">
+                            <rect key="frame" x="8" y="8" width="398" height="48"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="s9C-xF-iYT">
+                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="48" id="Uo4-vg-2wO"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPX-tx-UNA">
+                                    <rect key="frame" x="64" y="0.0" width="210" height="48"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70D-mq-g7G">
+                                    <rect key="frame" x="290" y="0.0" width="44" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="WSc-dO-td7"/>
+                                    </constraints>
+                                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <inset key="imageEdgeInsets" minX="7" minY="12" maxX="7" maxY="12"/>
+                                    <state key="normal" image="pause"/>
+                                    <connections>
+                                        <action selector="playPauseAction:" destination="4iB-Jo-h35" eventType="touchUpInside" id="pXV-oX-lXm"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kx5-dL-MQJ">
+                                    <rect key="frame" x="350" y="0.0" width="48" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="48" id="cgb-1F-Ku2"/>
+                                    </constraints>
+                                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <state key="normal" image="Right"/>
+                                    <connections>
+                                        <action selector="nextTrack:" destination="4iB-Jo-h35" eventType="touchUpInside" id="STx-GR-aMO"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="KUf-Vy-kul" firstAttribute="leading" secondItem="25S-1d-qA1" secondAttribute="leading" id="GAp-km-Poz"/>
+                        <constraint firstAttribute="height" constant="64" id="IOt-WP-exL"/>
+                        <constraint firstItem="h3a-Be-z9Z" firstAttribute="top" secondItem="25S-1d-qA1" secondAttribute="top" constant="8" id="MdT-9u-p2K"/>
+                        <constraint firstItem="KUf-Vy-kul" firstAttribute="top" secondItem="25S-1d-qA1" secondAttribute="top" id="TBy-gt-4Ib"/>
+                        <constraint firstAttribute="trailing" secondItem="KUf-Vy-kul" secondAttribute="trailing" id="Tlx-r2-6Fl"/>
+                        <constraint firstItem="h3a-Be-z9Z" firstAttribute="leading" secondItem="25S-1d-qA1" secondAttribute="leading" constant="8" id="aAG-HU-Mtw"/>
+                        <constraint firstAttribute="trailing" secondItem="h3a-Be-z9Z" secondAttribute="trailing" constant="8" id="lPg-Rb-xCr"/>
+                        <constraint firstAttribute="bottom" secondItem="h3a-Be-z9Z" secondAttribute="bottom" constant="8" id="p9Z-If-vds"/>
+                    </constraints>
+                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QHM-x3-PL4">
                     <rect key="frame" x="30" y="44" width="354" height="788"/>
                     <subviews>
@@ -136,8 +199,11 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="25S-1d-qA1" firstAttribute="top" secondItem="ALu-mV-1Hc" secondAttribute="top" id="GOp-my-gS1"/>
                 <constraint firstItem="ALu-mV-1Hc" firstAttribute="trailing" secondItem="QHM-x3-PL4" secondAttribute="trailing" constant="30" id="JBF-f2-CAG"/>
                 <constraint firstItem="ALu-mV-1Hc" firstAttribute="bottom" secondItem="QHM-x3-PL4" secondAttribute="bottom" constant="30" id="SbF-Fm-Imj"/>
+                <constraint firstItem="ALu-mV-1Hc" firstAttribute="trailing" secondItem="25S-1d-qA1" secondAttribute="trailing" id="YSN-Od-8CK"/>
+                <constraint firstItem="25S-1d-qA1" firstAttribute="leading" secondItem="ALu-mV-1Hc" secondAttribute="leading" id="cfu-aB-VNr"/>
                 <constraint firstItem="QHM-x3-PL4" firstAttribute="leading" secondItem="ALu-mV-1Hc" secondAttribute="leading" constant="30" id="dF3-pp-qGW"/>
                 <constraint firstItem="QHM-x3-PL4" firstAttribute="top" secondItem="ALu-mV-1Hc" secondAttribute="top" id="mUI-US-mYh"/>
             </constraints>
@@ -147,6 +213,12 @@
                 <outlet property="currentTimeLabel" destination="Hdr-tj-Yr9" id="lkU-hB-hVV"/>
                 <outlet property="currentTimeSlider" destination="WPB-35-XeG" id="Vg1-DB-oDn"/>
                 <outlet property="durationTimeLabel" destination="sBJ-dx-YPS" id="UYF-xQ-Tod"/>
+                <outlet property="maxiTrackStackView" destination="QHM-x3-PL4" id="Nr9-FZ-adR"/>
+                <outlet property="miniForvardButton" destination="kx5-dL-MQJ" id="6tM-Bl-hua"/>
+                <outlet property="miniPlayPauseButton" destination="70D-mq-g7G" id="WTg-G3-7ON"/>
+                <outlet property="miniTrackImageView" destination="s9C-xF-iYT" id="yLk-1o-VTv"/>
+                <outlet property="miniTrackTitleLabel" destination="zPX-tx-UNA" id="8gA-KG-hXF"/>
+                <outlet property="miniTrackView" destination="25S-1d-qA1" id="lfm-76-dQB"/>
                 <outlet property="playPauseButton" destination="xNL-nB-t3o" id="RdW-SL-rQr"/>
                 <outlet property="trackImageVIew" destination="Ash-sD-Znq" id="Ga9-e8-HXp"/>
                 <outlet property="trackTitleLabel" destination="SK6-4C-aNt" id="IwD-ms-TLY"/>
@@ -159,8 +231,10 @@
         <image name="Drag Down" width="37" height="12"/>
         <image name="Icon Min" width="7" height="12"/>
         <image name="IconMax" width="17" height="17"/>
+        <image name="Image" width="54.333332061767578" height="54.333332061767578"/>
         <image name="Left" width="34" height="20"/>
         <image name="Right" width="34" height="20"/>
+        <image name="pause" width="57" height="57"/>
         <image name="play" width="59" height="59"/>
     </resources>
 </document>

@@ -29,6 +29,13 @@ class TrackDetailView: UIView {
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var volumeSlider: UISlider!
     
+    @IBOutlet weak var miniTrackView: UIView!
+    @IBOutlet weak var miniForvardButton: UIButton!
+    @IBOutlet weak var maxiTrackStackView: UIStackView!
+    @IBOutlet weak var miniTrackTitleLabel: UILabel!
+    @IBOutlet weak var miniTrackImageView: UIImageView!
+    @IBOutlet weak var miniPlayPauseButton: UIButton!
+    
     var movingDelegate: TrackMovingDelegate?
     var animateDelegate: TrackAnimateDelegate?
     
@@ -46,24 +53,34 @@ class TrackDetailView: UIView {
         trackImageVIew.transform = CGAffineTransform(scaleX: scale, y: scale)
         trackImageVIew.layer.cornerRadius = 5
         
-        trackImageVIew.backgroundColor = .red
-        
-        observePlayerCurrentTime()
+        setupGesture()
     }
     
     // MARK: - Setup
     
     func set(model: SearchViewModel.Cell)  {
         trackTitleLabel.text = model.trackName
+        miniTrackTitleLabel.text = model.trackName
         authorLabel.text = model.artistName
         playTrack(track: model.previewUrl)
+        observePlayerCurrentTime()
+        monitorStartTime()
+        playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         let img600 = model.iconUrlString?.replacingOccurrences(of: "100x100", with: "600x600")
         trackImageVIew.sd_setImage(with: URL(string: img600 ?? ""), completed: nil)
+        miniTrackImageView.sd_setImage(with: URL(string: img600 ?? ""), completed: nil)
+    }
+    
+    private func setupGesture() {
+        miniTrackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTabMaximized)))
+        miniTrackView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
     }
     
     private func playTrack(track url: String?) {
         guard let u = URL(string: url ?? "") else {return}
         player.replaceCurrentItem(with: AVPlayerItem(url: u))
+        player.play()
     }
     
     // MARK: - Time setup
@@ -109,7 +126,7 @@ class TrackDetailView: UIView {
             options: .curveEaseInOut,
             animations: {
                 self.trackImageVIew.transform = .identity
-            },
+        },
             completion: nil)
         
     }
@@ -124,14 +141,13 @@ class TrackDetailView: UIView {
             animations: {
                 let scale: CGFloat = 0.8
                 self.trackImageVIew.transform = CGAffineTransform(scaleX: scale, y: scale)
-            },
+        },
             completion: nil)
     }
     
     // MARK: - @IBAction
     
     @IBAction func dragDownButtonTapped(_ sender: Any) {
-//        self.removeFromSuperview()
         self.animateDelegate?.minimizeTrackDetails()
     }
     
@@ -162,11 +178,62 @@ class TrackDetailView: UIView {
         if player.timeControlStatus == .paused {
             player.play()
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             enlargeTrackImageView()
         } else {
             player.pause()
             playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            miniPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             reduceTrackImageView()
         }
+    }
+    
+    // MARK: - Maximazing and minimizing gestures
+    @objc func handleTabMaximized() {
+        self.animateDelegate?.maximizeTrackDetail(model: nil)
+    }
+    
+    @objc func handlePan(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            print("began")
+        case .changed:
+            handlePanChange(gesture: gesture)
+        case .ended:
+            handlePanEnded(gesture: gesture)
+        @unknown default:
+            print("uncnown")
+        }
+    }
+    
+    func handlePanChange(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        self.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        
+        let newAlpha = 1 + translation.y / 200
+        self.miniTrackView.alpha = newAlpha < 0 ? 0 : newAlpha
+        self.maxiTrackStackView.alpha = -translation.y / 200
+    }
+    
+    func handlePanEnded(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        let velocity = gesture.velocity(in: self.superview)
+        
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.7,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut,
+            animations: {
+                self.transform = .identity
+                if translation.y < -200 || velocity.y < -500 {
+                    self.animateDelegate?.maximizeTrackDetail(model: nil)
+                } else {
+                    self.miniTrackView.alpha = 1
+                    self.maxiTrackStackView.alpha = 0
+                }
+            },
+            completion: nil)
     }
 }
