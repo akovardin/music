@@ -75,6 +75,8 @@ class TrackDetailView: UIView {
     private func setupGesture() {
         miniTrackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTabMaximized)))
         miniTrackView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
+        
+        addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismissalPan)))
     }
     
     private func playTrack(track url: String?) {
@@ -235,5 +237,31 @@ class TrackDetailView: UIView {
                 }
             },
             completion: nil)
+    }
+    
+    @objc func handleDismissalPan(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .changed:
+            let translation = gesture.translation(in: self.superview)
+            maxiTrackStackView.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        case .ended:
+            let translation = gesture.translation(in: self.superview)
+            UIView.animate(
+                withDuration: 0.5,
+                delay: 0,
+                usingSpringWithDamping: 0.7,
+                initialSpringVelocity: 1,
+                options: .curveEaseOut,
+                animations: {
+                    self.maxiTrackStackView.transform = .identity
+
+                    if translation.y > 0 {
+                        self.animateDelegate?.minimizeTrackDetails()
+                    }
+                },
+                completion: nil)
+        @unknown default:
+            print("default")
+        }
     }
 }
