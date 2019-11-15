@@ -39,6 +39,7 @@
 		ACE31DEB2360F4E700B7A85A /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACE31DEA2360F4E700B7A85A /* TrackCell.xib */; };
 		ACE31DED2360F55C00B7A85A /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE31DEC2360F55C00B7A85A /* TrackCell.swift */; };
 		ACE31DF02361012F00B7A85A /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE31DEF2361012F00B7A85A /* SearchResponse.swift */; };
+		C8C50FA7237BF7C700386FCD /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C50FA6237BF7C700386FCD /* Library.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		ACE31DEC2360F55C00B7A85A /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		ACE31DEF2361012F00B7A85A /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		B5843AA52197920C30DA0A9B /* Pods-MusicTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTests.release.xcconfig"; path = "Target Support Files/Pods-MusicTests/Pods-MusicTests.release.xcconfig"; sourceTree = "<group>"; };
+		C8C50FA6237BF7C700386FCD /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		E10F06115A4F99EFA72CC2C3 /* Pods_Music.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -195,6 +197,7 @@
 				AC4F72BD235CF11900CF4B1F /* MainTabBarController.swift */,
 				AC4F72BF235CF48400CF4B1F /* MusicViewController.swift */,
 				AC4F72C1235E4F4000CF4B1F /* TrackModel.swift */,
+				C8C50FA6237BF7C700386FCD /* Library.swift */,
 			);
 			path = Music;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				AC3BD9E7236B743B002A1FBE /* CMTime + Extension.swift in Sources */,
 				ACE31DDB2360BE8C00B7A85A /* SearchPresenter.swift in Sources */,
 				ACE31DD32360BE3300B7A85A /* NetworkService.swift in Sources */,
+				C8C50FA7237BF7C700386FCD /* Library.swift in Sources */,
 				ACE31DE62360C25D00B7A85A /* UIViewController + Storyboard.swift in Sources */,
 				ACE31DE02360BE8C00B7A85A /* SearchInteractor.swift in Sources */,
 				AC4F72C2235E4F4000CF4B1F /* TrackModel.swift in Sources */,

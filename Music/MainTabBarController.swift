@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class MainTabBarController: UITabBarController {
     private var minimisedTopAnchorConstraint: NSLayoutConstraint!
@@ -24,11 +25,15 @@ class MainTabBarController: UITabBarController {
         
         setupTrackDetailView()
         
-        let library = generateViewController(root: ViewController(), image: #imageLiteral(resourceName: "ios10-apple-music-library-5nav-icon"), title: "Library")
+        let library = Library()
+        let host = UIHostingController(rootView: library)
+        host.tabBarItem.image = #imageLiteral(resourceName: "library")
+        host.tabBarItem.title = "Library"
         
         viewControllers = [
+            host,
+//            generateViewController(root: host, image: #imageLiteral(resourceName: "ios10-apple-music-library-5nav-icon"), title: "Library"),
             generateViewController(root: search, image: #imageLiteral(resourceName: "ios10-apple-music-search-5nav-icon"), title: "Search"),
-            library,
         ]
     }
     
