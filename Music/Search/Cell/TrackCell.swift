@@ -25,6 +25,8 @@ class TrackCell: UITableViewCell {
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var collectionLabelName: UILabel!
     
+    var cell: SearchViewModel.Cell?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -33,10 +35,26 @@ class TrackCell: UITableViewCell {
         trackImageView.image = nil
     }
     
-    func set(viewModel: TrackCellViewModel) {
+    func set(viewModel: SearchViewModel.Cell) {
+        self.cell = viewModel
         trackNameLabel.text = viewModel.trackName
         artistNameLabel.text = viewModel.artistName
         collectionLabelName.text = viewModel.collectionName
         trackImageView?.sd_setImage(with: URL(string: viewModel.iconUrlString ?? ""), completed: nil)
     }
+    
+    @IBAction func addTrackAction(_ sender: Any) {
+        if let data = try? NSKeyedArchiver.archivedData(withRootObject: cell, requiringSecureCoding: false) {
+            UserDefaults.standard.set(data, forKey: "tracks")
+        }
+    }
+    
+    @IBAction func showInfoAction(_ sender: Any) {
+        if let track = UserDefaults.standard.object(forKey: "tracks") as? Data {
+            if let decoded = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(track) as? SearchViewModel.Cell {
+                print(decoded.trackName)
+            }
+        }
+    }
+    
 }
