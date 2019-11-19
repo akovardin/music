@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -40,6 +40,8 @@
 		ACE31DED2360F55C00B7A85A /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE31DEC2360F55C00B7A85A /* TrackCell.swift */; };
 		ACE31DF02361012F00B7A85A /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE31DEF2361012F00B7A85A /* SearchResponse.swift */; };
 		C8C50FA7237BF7C700386FCD /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C50FA6237BF7C700386FCD /* Library.swift */; };
+		C8C50FA92383D2B800386FCD /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C50FA82383D2B800386FCD /* UserDefaults.swift */; };
+		C8C50FAC2383D78B00386FCD /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = C8C50FAB2383D78B00386FCD /* URLImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,7 @@
 		ACE31DEF2361012F00B7A85A /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		B5843AA52197920C30DA0A9B /* Pods-MusicTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTests.release.xcconfig"; path = "Target Support Files/Pods-MusicTests/Pods-MusicTests.release.xcconfig"; sourceTree = "<group>"; };
 		C8C50FA6237BF7C700386FCD /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		C8C50FA82383D2B800386FCD /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		E10F06115A4F99EFA72CC2C3 /* Pods_Music.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -112,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C50FAC2383D78B00386FCD /* URLImage in Frameworks */,
 				2D9317805FD4ED4BA1FD2E8D /* Pods_Music.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +270,7 @@
 		ACE31DE42360C24200B7A85A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C8C50FA82383D2B800386FCD /* UserDefaults.swift */,
 				ACE31DE52360C25D00B7A85A /* UIViewController + Storyboard.swift */,
 				AC3BD9E6236B743B002A1FBE /* CMTime + Extension.swift */,
 				ACA47DA623721CBE00DF7E19 /* Nib.swift */,
@@ -308,6 +313,9 @@
 			dependencies = (
 			);
 			name = Music;
+			packageProductDependencies = (
+				C8C50FAB2383D78B00386FCD /* URLImage */,
+			);
 			productName = Music;
 			productReference = AC4F7285235CED9700CF4B1F /* Music.app */;
 			productType = "com.apple.product-type.application";
@@ -382,6 +390,9 @@
 				Base,
 			);
 			mainGroup = AC4F727C235CED9700CF4B1F;
+			packageReferences = (
+				C8C50FAA2383D78B00386FCD /* XCRemoteSwiftPackageReference "url-image" */,
+			);
 			productRefGroup = AC4F7286235CED9700CF4B1F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -528,6 +539,7 @@
 				ACE31DE02360BE8C00B7A85A /* SearchInteractor.swift in Sources */,
 				AC4F72C2235E4F4000CF4B1F /* TrackModel.swift in Sources */,
 				AC4F7289235CED9700CF4B1F /* AppDelegate.swift in Sources */,
+				C8C50FA92383D2B800386FCD /* UserDefaults.swift in Sources */,
 				ACE31DDF2360BE8C00B7A85A /* SearchViewController.swift in Sources */,
 				AC4F72BE235CF11900CF4B1F /* MainTabBarController.swift in Sources */,
 				ACE31DF02361012F00B7A85A /* SearchResponse.swift in Sources */,
@@ -870,6 +882,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C8C50FAA2383D78B00386FCD /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C8C50FAB2383D78B00386FCD /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8C50FAA2383D78B00386FCD /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		AC4F7291235CED9700CF4B1F /* Music.xcdatamodeld */ = {
