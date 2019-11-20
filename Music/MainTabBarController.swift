@@ -25,7 +25,8 @@ class MainTabBarController: UITabBarController {
         
         setupTrackDetailView()
         
-        let library = Library()
+        var library = Library()
+        library.trackDetailAnimateDelegate = self
         let host = UIHostingController(rootView: library)
         host.tabBarItem.image = #imageLiteral(resourceName: "library")
         host.tabBarItem.title = "Library"

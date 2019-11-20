@@ -11,7 +11,11 @@ import URLImage
 
 struct Library: View {
     
-    var tracks = UserDefaults.standard.savedTracks()
+    var trackDetailAnimateDelegate: TrackAnimateDelegate?
+    
+    @State var tracks = UserDefaults.standard.savedTracks()
+    @State private var showingAlert = false
+    @State private var track: SearchViewModel.Cell!
     
     var body: some View {
         NavigationView {
@@ -19,7 +23,8 @@ struct Library: View {
                 GeometryReader { geometry in
                     HStack (spacing: 20) {
                         Button(action: {
-                            print("1234")
+                            self.track = self.tracks[0]
+                            self.trackDetailAnimateDelegate?.maximizeTrackDetail(model: self.track)
                         }, label: {
                             Image(systemName: "play.fill")
                                 .frame(width: geometry.size.width / 2 - 10, height: 50)
@@ -29,7 +34,7 @@ struct Library: View {
                         })
                         
                         Button(action: {
-                            print("1234")
+                            self.tracks = UserDefaults.standard.savedTracks()
                         }, label: {
                             Image(systemName: "arrow.2.circlepath")
                                 .frame(width: geometry.size.width / 2 - 10, height: 50)
@@ -42,12 +47,44 @@ struct Library: View {
                 
                 Divider().padding(.leading).padding(.trailing)
                 Spacer()
-                List(tracks) { track in
-                   Cell(cell: track)
+                List {
+                    ForEach(tracks) { track in
+                        Cell(cell: track)
+                            .gesture(LongPressGesture().onEnded({ _ in
+                                self.showingAlert = true
+                                self.track = track
+                            })
+                                .simultaneously(with: TapGesture().onEnded({ _ in
+                                    self.track = track
+                                    self.trackDetailAnimateDelegate?.maximizeTrackDetail(model: self.track)
+                                })))
+                    }.onDelete(perform: delete)
                 }
             }
-                
-            .navigationBarTitle("Library")
+            .actionSheet(isPresented: $showingAlert, content: {
+                ActionSheet(
+                    title: Text("Are you sure u want to delete this track?"),
+                    buttons: [.destructive(Text("Delete"), action: {
+                        self.delete(track: self.track)
+                    }), .cancel()]
+                )
+            })
+                .navigationBarTitle("Library")
+        }
+    }
+    
+    func delete(ar offsets: IndexSet) {
+        tracks.remove(atOffsets: offsets)
+        if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: tracks, requiringSecureCoding: false) {
+            UserDefaults.standard.set(savedData, forKey: UserDefaults.favouritesTrackKey)
+        }
+    }
+    
+    func delete(track: SearchViewModel.Cell) {
+        guard let index = tracks.firstIndex(of: track) else {return}
+        tracks.remove(at: index)
+        if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: tracks, requiringSecureCoding: false) {
+            UserDefaults.standard.set(savedData, forKey: UserDefaults.favouritesTrackKey)
         }
     }
 }
@@ -58,12 +95,12 @@ struct Cell: View {
     
     var body: some View {
         HStack {
-           URLImage(URL(string: cell.iconUrlString ?? "")!,
-            content: {
-                $0.image
-                    .resizable()
-                    .frame(width: 60, height: 60)
-                    .cornerRadius(2)                // Make it resizable
+            URLImage(URL(string: cell.iconUrlString ?? "")!,
+                     content: {
+                        $0.image
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                            .cornerRadius(2)                // Make it resizable
             })
             VStack(alignment: .leading) {
                 Text("\(cell.trackName)")
