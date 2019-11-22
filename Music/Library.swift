@@ -55,6 +55,16 @@ struct Library: View {
                                 self.track = track
                             })
                                 .simultaneously(with: TapGesture().onEnded({ _ in
+                                    let keyWindow = UIApplication.shared.connectedScenes
+                                        .filter({$0.activationState == .foregroundActive})
+                                        .map({$0 as? UIWindowScene})
+                                        .compactMap({$0})
+                                        .first?.windows
+                                        .filter({$0.isKeyWindow}).first
+                                    
+                                    let tabBarController = keyWindow?.rootViewController as? MainTabBarController
+                                    tabBarController?.trackDetailView.movingDelegate = self
+                                    
                                     self.track = track
                                     self.trackDetailAnimateDelegate?.maximizeTrackDetail(model: self.track)
                                 })))
@@ -113,5 +123,42 @@ struct Cell: View {
 struct Library_Previews: PreviewProvider {
     static var previews: some View {
         Library()
+    }
+}
+
+
+extension Library: TrackMovingDelegate {
+    func moveBack() -> SearchViewModel.Cell? {
+        guard  let index = tracks.firstIndex(of: track)  else {
+            return nil
+        }
+        
+        var nextTrack: SearchViewModel.Cell
+        
+        if index - 1 == -1 {
+            nextTrack = tracks[tracks.count - 1]
+        } else {
+            nextTrack = tracks[index - 1]
+        }
+        
+        self.track = nextTrack
+        return nextTrack
+    }
+    
+    func moveForvard() -> SearchViewModel.Cell? {
+        guard  let index = tracks.firstIndex(of: track)  else {
+            return nil
+        }
+        
+        var nextTrack: SearchViewModel.Cell
+        
+        if index + 1 == tracks.count {
+            nextTrack = tracks[0]
+        } else {
+            nextTrack = tracks[index + 1]
+        }
+        
+        self.track = nextTrack
+        return nextTrack
     }
 }
